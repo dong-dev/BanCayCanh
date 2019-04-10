@@ -1,0 +1,420 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jun 18, 2018 at 09:51 AM
+-- Server version: 5.7.22-0ubuntu0.17.10.1
+-- PHP Version: 7.2.5-1+ubuntu17.10.1+deb.sury.org+1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bancaycanh`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `parent_id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(35, 0, 'Cây cảnh văn phòng', 'Cây cảnh văn phòng', '2018-03-16 03:00:01', '2018-03-16 03:00:01'),
+(37, 35, 'Cây Kim Ngân', 'Cây Kim Ngân', '2018-03-16 03:02:25', '2018-03-16 03:02:25'),
+(39, 0, 'Cây Cảnh Nội Thất', 'Cây Cảnh Nội Thất', '2018-03-16 03:14:44', '2018-03-16 03:14:44'),
+(40, 0, 'Cây Cảnh Thủy Sinh', 'Cây Cảnh Thủy Sinh', '2018-03-16 03:15:05', '2018-03-16 03:15:05'),
+(41, 0, 'Cây Công Trình', 'Cây Công Trình', '2018-03-16 03:17:49', '2018-03-16 03:17:49'),
+(43, 41, 'Cây Ăn Quả', 'Cây Ăn Quả', '2018-03-16 03:18:38', '2018-03-16 03:18:38'),
+(44, 41, 'Cây Bụi', 'Cây Bụi', '2018-03-16 03:19:02', '2018-03-16 03:19:02'),
+(56, 41, 'Cây Bóng Mát', 'Cây Bóng Mát', '2018-03-16 08:37:33', '2018-03-16 08:37:33'),
+(58, 35, 'Cây Phong Thủy', 'Cay phong thuy', '2018-03-16 13:49:46', '2018-03-18 19:59:50'),
+(59, 58, 'Cây để bàn', 'Cây để bàn', '2018-03-16 13:50:22', '2018-03-16 13:50:22'),
+(60, 58, 'Cây để phòng họp', 'Cây để phòng họp', '2018-03-16 13:50:38', '2018-03-16 13:50:38'),
+(61, 35, 'Cây Cẩm Thạch', 'Cây Cẩm Thạch', '2018-03-18 20:01:04', '2018-03-18 20:01:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', '2018-01-29 04:41:18', '2018-01-29 04:41:18'),
+(2, 'User', '2018-01-29 07:39:40', '2018-01-29 07:39:40'),
+(3, 'Manage', '2018-01-29 07:40:59', '2018-01-29 07:40:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2018_01_26_130539_create_groups_table', 2),
+(4, '2018_01_26_130653_add_group_id_column_into_user_table', 2),
+(5, '2018_01_26_131833_create_product_table', 3),
+(6, '2018_01_26_132004_create_category_table', 3),
+(7, '2018_01_26_132033_create_image_table', 3),
+(8, '2018_01_26_132101_create_orders_table', 3),
+(9, '2018_01_26_132153_create_order_detail_table', 3),
+(10, '2018_01_26_132247_create_trees_table', 4),
+(11, '2018_01_26_132315_create_pots_table', 4),
+(12, '2018_01_29_094954_create_news_table', 4),
+(13, '2018_02_03_034828_add_category_id_column_into_tree_table', 5),
+(14, '2018_02_03_091633_create_grow_table', 6),
+(15, '2018_02_05_155945_drop_size_column_into_pots_table', 7),
+(16, '2018_02_05_160150_add_size_column_into_pots_table', 8),
+(21, '2018_03_09_093034_add_slug_column_into_categories', 9),
+(22, '2018_03_09_093207_add_parent_id_column_into_categories', 10),
+(23, '2018_03_09_093458_add_slug_column_into_products', 11),
+(24, '2018_03_09_093712_add_promo1_column_into_products', 12),
+(25, '2018_03_09_093849_add_promo2_column_into_products', 13),
+(26, '2018_03_09_093944_add_promo3_column_into_products', 14),
+(27, '2018_03_09_094045_add_tag_column_into_products', 15),
+(28, '2018_03_09_094222_add_user_id_column_into_products', 16),
+(29, '2018_03_13_093242_add_type_column_into_orders_table', 16),
+(30, '2018_03_21_131921_create_product_detail_table', 17),
+(31, '2018_03_21_133900_add_images_column_into_product_detail_table', 18),
+(32, '2018_03_21_134038_add_images2_column_into_product_detail_table', 19),
+(33, '2018_03_21_134136_add_images3_column_into_product_detail_table', 20),
+(34, '2018_03_22_142057_create_table_product_detail', 21),
+(35, '2018_03_30_075655_create_customers_table', 22),
+(36, '2018_04_04_015243_add_sale_column_in_products_table', 23);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total` double(15,4) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `type` int(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `name`, `address`, `phone`, `mail`, `total`, `status`, `type`, `created_at`, `updated_at`) VALUES
+(42, 14, 'linh', 'Xa La Ha Dong', '0945657924', 'linh@gmail.com', 350000.0000, 2, 0, '2018-04-03 00:07:05', '2018-04-18 02:58:34'),
+(55, 4, 'Noi That', 'Nam Dinh', '01249289335', 'nam@gmail.com', 120000.0000, 0, 0, '2018-04-03 02:17:52', '2018-04-03 02:17:53'),
+(65, 15, 'Trịnh Quang Nam', 'Hà Nội', '0987865432', 'nam@gmail.com', 135000.0000, 0, 0, '2018-04-17 08:37:04', '2018-04-17 08:37:05'),
+(66, 15, 'Lê Hùng Cường', 'Đông Anh Hà Nội', '0123654789', 'cuong@gmail.com', 270000.0000, 3, 1, '2018-04-19 19:44:24', '2018-04-19 19:45:22'),
+(67, 15, 'yen', 'hn', '0987865432', 'yen@gmail.com', 2700000.0000, 2, 1, '2018-04-21 02:34:47', '2018-04-21 02:35:40'),
+(68, 15, 'Chu Tự Hoàng', 'Nam Từ Liêm', '0145987675', 'hoang@gmail.com', 900000.0000, 0, 0, '2018-04-22 19:30:44', '2018-04-22 19:30:44'),
+(69, 15, 'Linh', 'Nam Từ Liêm', '0987865432', 'linh@gmail.com', 119000.0000, 0, 1, '2018-04-26 00:49:11', '2018-04-26 00:49:11'),
+(70, 15, 'ABC', 'g', '0987865432', 'a@gmail.com', 300000.0000, 3, 0, '2018-05-15 09:52:10', '2018-05-15 09:56:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '1',
+  `price` double(20,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 25, 2, 90000.00, '2018-03-28 05:23:55', '2018-03-28 05:23:55'),
+(2, 1, 24, 1, 120000.00, '2018-03-28 05:23:55', '2018-03-28 05:23:55'),
+(3, 2, 24, 1, 120000.00, '2018-03-28 05:55:07', '2018-03-28 05:55:07'),
+(4, 4, 12, 1, 230000.00, '2018-03-29 21:37:25', '2018-03-29 21:37:25'),
+(5, 4, 24, 1, 120000.00, '2018-03-29 21:37:25', '2018-03-29 21:37:25'),
+(6, 5, 24, 1, 120000.00, '2018-03-30 21:32:31', '2018-03-30 21:32:31'),
+(7, 7, 22, 1, 350000.00, '2018-03-31 01:32:09', '2018-03-31 01:32:09'),
+(8, 8, 24, 1, 120000.00, '2018-04-01 11:16:38', '2018-04-01 11:16:38'),
+(9, 9, 21, 1, 0.00, '2018-04-01 19:50:17', '2018-04-01 19:50:17'),
+(10, 19, 24, 2, 120000.00, '2018-04-01 20:40:28', '2018-04-01 20:40:28'),
+(11, 22, 22, 1, 350000.00, '2018-04-01 20:55:32', '2018-04-01 20:55:32'),
+(12, 23, 12, 1, 230000.00, '2018-04-01 20:59:18', '2018-04-01 20:59:18'),
+(13, 42, 22, 1, 350000.00, '2018-04-03 00:07:05', '2018-04-03 00:07:05'),
+(14, 43, 12, 1, 230000.00, '2018-04-03 00:20:13', '2018-04-03 00:20:13'),
+(15, 47, 24, 1, 120000.00, '2018-04-03 00:39:38', '2018-04-03 00:39:38'),
+(16, 49, 22, 1, 350000.00, '2018-04-03 01:22:32', '2018-04-03 01:22:32'),
+(17, 50, 22, 1, 350000.00, '2018-04-03 01:27:03', '2018-04-03 01:27:03'),
+(18, 54, 24, 1, 120000.00, '2018-04-03 02:14:03', '2018-04-03 02:14:03'),
+(19, 55, 24, 1, 120000.00, '2018-04-03 02:17:52', '2018-04-03 02:17:52'),
+(20, 56, 13, 1, 100000.00, '2018-04-04 11:11:06', '2018-04-04 11:11:06'),
+(21, 56, 21, 1, 229000.00, '2018-04-04 11:11:06', '2018-04-04 11:11:06'),
+(22, 57, 14, 2, 290000.00, '2018-04-04 17:31:41', '2018-04-04 17:31:41'),
+(23, 58, 25, 1, 99000.00, '2018-04-05 01:00:00', '2018-04-05 01:00:00'),
+(24, 58, 26, 1, 900000.00, '2018-04-05 01:00:00', '2018-04-05 01:00:00'),
+(25, 59, 25, 1, 99000.00, '2018-04-05 01:00:31', '2018-04-05 01:00:31'),
+(26, 60, 25, 1, 99000.00, '2018-04-05 01:00:54', '2018-04-05 01:00:54'),
+(27, 60, 26, 1, 900000.00, '2018-04-05 01:00:54', '2018-04-05 01:00:54'),
+(28, 62, 24, 1, 119000.00, '2018-04-05 01:18:05', '2018-04-05 01:18:05'),
+(29, 62, 23, 1, 609000.00, '2018-04-05 01:18:05', '2018-04-05 01:18:05'),
+(30, 62, 25, 1, 99000.00, '2018-04-05 01:18:05', '2018-04-05 01:18:05'),
+(31, 63, 24, 3, 119000.00, '2018-04-05 01:54:21', '2018-04-05 01:54:21'),
+(32, 63, 23, 1, 609000.00, '2018-04-05 01:54:21', '2018-04-05 01:54:21'),
+(33, 64, 24, 1, 119000.00, '2018-04-05 02:01:16', '2018-04-05 02:01:16'),
+(34, 65, 26, 1, 900000.00, '2018-04-09 18:39:37', '2018-04-09 18:39:37'),
+(35, 66, 27, 1, 135000.00, '2018-04-15 08:58:32', '2018-04-15 08:58:32'),
+(36, 67, 24, 3, 119000.00, '2018-04-15 09:24:12', '2018-04-15 09:24:12'),
+(37, 68, 24, 2, 119000.00, '2018-04-16 01:45:38', '2018-04-16 01:45:38'),
+(38, 65, 27, 1, 135000.00, '2018-04-17 08:37:05', '2018-04-17 08:37:05'),
+(39, 66, 27, 2, 135000.00, '2018-04-19 19:44:24', '2018-04-19 19:44:24'),
+(40, 67, 26, 3, 900000.00, '2018-04-21 02:34:47', '2018-04-21 02:34:47'),
+(41, 68, 26, 1, 900000.00, '2018-04-22 19:30:44', '2018-04-22 19:30:44'),
+(42, 69, 24, 1, 119000.00, '2018-04-26 00:49:11', '2018-04-26 00:49:11'),
+(43, 70, 28, 1, 300000.00, '2018-05-15 09:52:10', '2018-05-15 09:52:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `price` double(15,4) NOT NULL,
+  `sale` float(15,4) DEFAULT NULL,
+  `thumbnail` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no-image.jpg',
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `sale`, `thumbnail`, `description`, `tag`, `status`, `created_at`, `updated_at`) VALUES
+(12, 35, 'Cây Kim Ngân', 230000.0000, 209000.0000, 'ban-cay-kim-ngan-300x300.jpg', '<p><em>C&acirc;y kim ng&acirc;n c&oacute; nghĩa l&agrave; tiền v&agrave;ng, t&ecirc;n tiếng Anh l&agrave; Money Tree. C&ugrave;ng với&nbsp; kim ng&acirc;n kh&ocirc;ng bao giờ hết hot trong mỗi dịp lễ tết v&agrave; lu&ocirc;n nằm trong danh s&aacute;ch những c&acirc;y văn ph&ograve;ng l&yacute; tưởng.</em></p>\r\n\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img alt=\"\" src=\"/uploads/products/y-nghia-cay-kim-ngan-363x500.jpg\" style=\"height:275px; width:200px\" /></p>\r\n\r\n<p>C&acirc;y kim ng&acirc;n xoắn l&agrave; loại c&acirc;y c&oacute; d&aacute;ng vẻ thanh cao, được ưa chuộng đặt tr&ecirc;n b&agrave;n l&agrave;m việc với &yacute; nghĩa mong muốn kinh doanh ph&aacute;t đạt, c&oacute; lợi nhuận cao.</p>\r\n\r\n<p><strong>C&aacute;ch nhận biết:</strong><br />\r\nC&acirc;y kim ng&acirc;n c&oacute; l&aacute; d&agrave;i, mỗi đầu c&agrave;nh thường mọc nhiều l&aacute;, sắp xếp th&agrave;nh h&igrave;nh tr&ograve;n, xanh quanh năm. Kim ng&acirc;n nở hoa từ th&aacute;ng 4 đến th&aacute;ng 11. Hoa gồm những c&aacute;nh lớn m&agrave;u kem nhạt, nở về đ&ecirc;m v&agrave; toả hương thoang thoảng. Đ&agrave;i hoa m&agrave;u n&acirc;u nhạt h&igrave;nh bầu dục với 5 c&aacute;nh m&agrave;u xanh v&agrave;ng, d&agrave;i 15cm. Quả Kim ng&acirc;n c&oacute; h&igrave;nh trứng đường k&iacute;nh khoảng 10cm. Khi ch&iacute;n quả c&oacute; m&agrave;u n&acirc;u nhạt. Quả kh&ocirc; nứt rụng ra khoảng 10 &ndash; 20 hạt</p>\r\n\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img alt=\"\" src=\"/uploads/products/kim-ngan-to-1.jpg\" style=\"height:225px; width:300px\" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>\r\n\r\n<p><strong>Đặc điểm sinh học:</strong><br />\r\nC&acirc;y kim ng&acirc;n c&oacute; th&acirc;n dẻo dai, b&ecirc;n chắc, kh&ocirc;ng kỵ &aacute;nh nắng, dễ th&iacute;ch nghi với mọi điều kiện thời tiết n&oacute;ng lạnh từ 4 đến 40 độ C. Kim ng&acirc;n c&oacute; thể được chọn l&agrave;m nguy&ecirc;n liệu bonsai bởi ta dễ d&agrave;ng nu&ocirc;i được gốc lớn từ hạt dễ d&agrave;ng tạo d&aacute;ng, khống chế được chiều cao c&acirc;y v&agrave; độ lớn của l&aacute;.<br />\r\nC&acirc;y kim ng&acirc;n xoắnc&ograve;n được gọi l&agrave; c&acirc;y &rdquo; b&iacute;m t&oacute;c&nbsp; v&igrave; ở giai đoạn c&acirc;y con, người ta trồng chung từ 3 &ndash; 5 c&acirc;y v&agrave;o một chỗ rồi đan thắt như b&iacute;m t&oacute;c đu&ocirc;i sam tr&ocirc;ng rất lạ mắt.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>C&aacute;ch trồng v&agrave; chăm s&oacute;c c&acirc;y kim ng&acirc;n:</strong><br />\r\nDo c&oacute; thể khống chế được độ cao th&acirc;n c&acirc;y, kim ng&acirc;n c&oacute; thể trồng trong c&aacute;c chậu nhỏ để b&agrave;n hay trồng trong chậu lớn để tạo kh&ocirc;ng gian xanh m&aacute;t. Khi trồng n&ecirc;n chọn loại đất tơi xốp, gi&agrave;u dinh dưỡng. Một gợi &yacute; cho việc l&agrave;m đất: tro trấu + trấu s&oacute;ng + xơ dừa với tỷ lệ 60% + 15% + 25% v&agrave; 100g đến 200g ph&acirc;n l&acirc;n để c&acirc;y c&oacute; nguồn ph&acirc;n dự trữ.<br />\r\nD&ugrave; kim ng&acirc;n kh&ocirc;ng kỵ nắng nhưng kh&ocirc;ng n&ecirc;n đặt c&acirc;y dưới &aacute;nh nắng qu&aacute; gắt c&oacute; thể g&acirc;y ch&aacute;y l&aacute;. Nhiệt độ n&ecirc;n duy tr&igrave; ở mức 18 &ndash; 26 độ C. L&agrave; lo&agrave;i c&acirc;y c&oacute; thể chịu n&oacute;ng v&agrave; hạn tương đối n&ecirc;n lượng nước m&agrave; c&acirc;y kim ng&acirc;n cần cũng &iacute;t hơn c&aacute;c lo&agrave;i c&acirc;y kh&aacute;c. Người chăm s&oacute;c c&acirc;y chỉ cần tưới 1-2 lần/tuần.</p>\r\n\r\n<p><strong>C&acirc;y kim ng&acirc;n</strong>&nbsp;&ndash; Money tree, được xem l&agrave; rất tốt về phong thủy, mang đến cho gia chủ sự may mắn v&agrave; thịnh vượng, đặc biệt l&agrave; c&acirc;y kim ng&acirc;n xoắn. Một chậu kim ng&acirc;n xoắn nhỏ xinh c&oacute; thể trở th&agrave;nh một m&oacute;n qu&agrave; sinh nhật đầy &yacute; nghĩa với gi&aacute; cả phải chăng.</p>', 'kimngan', 1, '2018-03-16 02:54:35', '2018-04-13 00:09:26'),
+(13, 35, 'Cây Ngọc Ngân', 100000.0000, 90000.0000, 'cay-ngoc-ngan-dep-300x300.jpg', '<p>C&acirc;y May Mắn l&agrave; loại c&acirc;y phong thủy c&oacute; &yacute; nghĩa mang t&agrave;i lộc đến cho gia chủ</p>', 'NgocNgan', 1, '2018-03-16 03:05:42', '2018-04-13 00:19:40'),
+(21, 60, 'Cây Cọ Nhật', 245000.0000, 229000.0000, 'cay-co-nhat.jpg', '<p><em>Cọ Nhật l&agrave; một trong những lo&agrave;i </em>c&acirc;y cảnh đẹp. bạn c&oacute; thể d&ugrave;ng để b&agrave;n l&agrave;m việc, để lan can, b&agrave;n ph&ograve;ng kh&aacute;ch... <s>C&acirc;y c&oacute; t&aacute;c dụng tốt trong việc điều h&ograve;a kh&ocirc;ng kh&iacute;, hấp thu kim loại nặng..</s></p>', 'cọ nhật', 1, '2018-03-18 20:03:28', '2018-04-04 00:45:04'),
+(22, 60, 'Cây Vạn Niên Thanh', 350000.0000, 350000.0000, 'cây_vạn_liên_thanh_leo_1.JPG', '<p>C&acirc;y Vạn li&ecirc;n thanh leo cột l&agrave; một trong những loại c&acirc;y cảnh trang tr&iacute; nội thất văn ph&ograve;ng đẹp, nhưng b&ecirc;n cạnh đ&oacute; th&igrave; đ&acirc;y c&ograve;n l&agrave; một loại c&acirc;y c&oacute; khả năng chữa bệnh v&agrave; cũng rất độc</p>', 'vạn niên thanh', 1, '2018-03-18 20:06:10', '2018-04-04 01:13:10'),
+(23, 60, 'Cây Bạch Mã Hoàng Tử', 650000.0000, 609000.0000, 'cay-bach-ma-hoang-tu-trong-van-phong.jpg', '<p>C&acirc;y Bạch M&atilde; Ho&agrave;ng Từ. L&agrave; lo&agrave;i c&acirc;y cảnh đẹp trang tr&iacute; nội thất văn ph&ograve;ng.</p>\r\n\r\n<p>&nbsp;</p>', 'bạch mã hoàng tủ', 1, '2018-03-18 20:07:57', '2018-04-04 00:44:47'),
+(24, 59, 'Sen Ngân Chi', 120000.0000, 119000.0000, 'Sen_ngân_chi.jpg', '<p>Sen Ng&acirc;n Chi thuộc họ xương rồng, một c&aacute;i t&ecirc;n đẹp với &yacute; nghĩa đem tới một t&igrave;nh y&ecirc;u bền chặt cho lứa đ&ocirc;i, bạn b&egrave;. N&oacute; thể hiện sự gắn kết của t&igrave;nh y&ecirc;u theo thời gian...</p>', 'sen ngân chi', 1, '2018-03-18 21:01:34', '2018-04-04 00:44:24'),
+(26, 43, 'Cây mít', 1200000.0000, 900000.0000, 'ghep-cay-mit.jpg', NULL, 'mit', 1, '2018-04-03 19:23:45', '2018-04-04 00:37:34'),
+(27, 59, 'Cây Tài Lộc', 150000.0000, 135000.0000, 'cay-tai-loc-co-may-man1-300x300.jpg', NULL, 'tailoc', 1, '2018-04-13 00:14:41', '2018-04-13 00:14:41'),
+(28, 40, 'Cây Ngọc Bích', 450000.0000, 300000.0000, 'cay-ngoc-bich-300x300.jpg', NULL, 'ngocbich', 1, '2018-04-13 00:17:34', '2018-04-13 00:17:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_detail`
+--
+
+CREATE TABLE `products_detail` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `des` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_id` int(11) NOT NULL DEFAULT '2',
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `group_id`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
+(4, 'Linh96', 'admin1@gmail.com', '$2y$10$ZjwC3aJGnUi8FJhAnuz/m.WcetioubaaePTHyEJmAwmjavwm7/9Ii', '0123456654', 1, 'Ha Noi', 'jUoZ4jToc2gpmmslJ08YfSUFjj6fFuR2hw81B20Rgkl1jEHSVQZOdqnyuA96', '2018-03-02 00:36:50', '2018-03-08 21:15:05'),
+(5, 'Hoang Dinh Quan', 'quan@gmail.com', '123456', '01249289335', 2, 'Y Yen Nam Dinh', NULL, '2018-03-08 20:24:31', '2018-03-08 23:36:07'),
+(6, 'Dang Thi Ha', 'Ha@gmail.com', '123456', '0198989898', 2, 'Ninh Binh', NULL, '2018-03-08 21:25:43', '2018-03-08 21:25:43'),
+(7, 'Cuong', 'cuong@gmail.com', '$2y$10$.Cx2EKQAY1HFGggFzVu8v.CzhobH5N1zQoSwcg4L1BUuZsU/9h3Lm', NULL, 2, NULL, NULL, '2018-03-08 19:13:37', '2018-03-08 19:13:37'),
+(8, 'Hang', 'hang@gmail.com', '$2y$10$n4y.jER1LCEZbYrQeVCXO.J3Q1gp0Khjk2AJfsxiJVOIifVjpT2jO', NULL, 2, NULL, 'YUcs7Tr0TdrAvE97MKMEy9hThas06sEHrScX5SDd88NzRt5yazS97ra3RMmD', '2018-03-09 00:09:19', '2018-03-09 00:09:19'),
+(9, 'test', 'test@gmail.com', '$2y$10$HqIECS.MYrwS6i3dPpO/0eT2yO.WGEAeK8fMXQvJNyeEEPrnSpJ9C', NULL, 2, NULL, '6PoW1I5pLCtX4MFyuRsjGNpKAVFNpr7tK1xGDb86fgq1HMjs5LNwSA46YFwK', '2018-03-09 10:07:26', '2018-03-09 10:07:26'),
+(13, 'Dũng', 'dung@gmail.com', '$2y$10$MGCdsvI3wPH/.b4XTmNYuOvluTXy9SJ376V8oOQ4n7AP.5TCztPUu', NULL, 2, NULL, 'fbH24jYjLBoFN58Fl0PSHgntKxja03g0aMLxtkRg7i1CJAQ1DKrd4iaeoopB', '2018-03-30 11:35:58', '2018-03-30 11:35:58'),
+(14, 'Duyên Anh', 'duyen@gmail.com', '$2y$10$AEPsiKe/RHAV7yZUqWzRS.AIbDC.wQDosXUNcZ9KOu4zdJL.KMElu', NULL, 2, NULL, 'PsTnnbbW6zk6hjY7H01LzQuhI23e7RIQ93A3fekwcc6Otk22JzVN8dfgdVX1', '2018-03-31 00:21:24', '2018-03-31 00:21:24'),
+(15, 'Unknow', 'Unknow', 'Unknow', NULL, 2, 'Unknow', NULL, '2018-04-01 11:08:24', '2018-04-01 11:08:24');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_detail`
+--
+ALTER TABLE `products_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+--
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `products_detail`
+--
+ALTER TABLE `products_detail`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
