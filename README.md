@@ -1,6 +1,6 @@
 # BanCayCanh
 HƯỚNG DẪN CÁCH DÙNG WEBSITE BÁN C Y CẢNH
-Bật Xampp
+- Bật Xampp
 Chọn vào Shell trong Xampp
 Truy cập đến thư mục bancaycanh trong htdocs bằng cách cd  /htdocs/bancaycanh
 Chạy lệnh php artisan serve.
